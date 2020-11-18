@@ -20,6 +20,6 @@ hipcc -fgpu-rdc -fPIC -g -O -x hip -std=c++14 -c ./file4.cxx -o objects/file4.o
 hipcc -fgpu-rdc -fPIC -g -O -x hip -std=c++14 -c ./file5.cxx -o objects/file5.o
 
 
-hipcc --hip-link -fgpu-rdc -shared -Wl,-soname,libHIPCallsCorrectA.so -o libHIPCallsCorrectA.so objects/file4.o objects/file5.o libHIPSeparateLibA.a
-hipcc --hip-link -fgpu-rdc -shared -Wl,-soname,libHIPCallsCorrectB.so -o libHIPCallsCorrectB.so @objects.rsp libHIPSeparateLibA.a
-hipcc --hip-link -fgpu-rdc -shared -Wl,-soname,libHIPCallsFail.so -o libHIPCallsFail.so objects/file4.o objects/file5.o @archives.rsp
+hipcc --hip-link -fgpu-rdc -shared -o libHIPCallsCorrectA.so objects/file4.o objects/file5.o libHIPSeparateLibA.a
+hipcc --hip-link -fgpu-rdc -shared -o libHIPCallsCorrectB.so @objects.rsp libHIPSeparateLibA.a
+hipcc --hip-link -fgpu-rdc -shared -o libHIPCallsFail.so objects/file4.o objects/file5.o @archives.rsp
